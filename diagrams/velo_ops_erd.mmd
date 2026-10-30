@@ -1,0 +1,67 @@
+erDiagram
+    USERS ||--o{ TASK_ACTIVITY : performs
+    TASK_DEFINITIONS ||--o{ TASK_ACTIVITY : defines
+    USERS ||--o{ REWARDS : earns
+    TASK_ACTIVITY ||--o{ REWARDS : source_for
+    USERS ||--o{ WALLET_TRANSACTIONS : owns
+    USERS ||--o{ WITHDRAWALS : requests
+    USERS ||--o{ REFERRALS : refers
+    USERS ||--o{ FEATURE_EVENTS : generates
+    USERS {
+        string user_id PK
+        datetime signup_timestamp
+        string acquisition_source
+        string account_status
+    }
+    TASK_DEFINITIONS {
+        string task_id PK
+        string category
+        string task_status
+    }
+    TASK_ACTIVITY {
+        string task_activity_id PK
+        string user_id FK
+        string task_id FK
+        datetime started_at
+        datetime completed_at
+        string status
+    }
+    REWARDS {
+        string reward_id PK
+        string user_id FK
+        string source_activity_id FK
+        decimal points
+        string status
+        datetime created_at
+    }
+    WALLET_TRANSACTIONS {
+        string wallet_txn_id PK
+        string user_id FK
+        string txn_type
+        decimal amount
+        string currency
+        string status
+    }
+    WITHDRAWALS {
+        string withdrawal_id PK
+        string user_id FK
+        decimal requested_amount
+        string status
+        datetime requested_at
+        datetime processed_at
+    }
+    REFERRALS {
+        string referral_id PK
+        string referrer_user_id FK
+        string referred_user_id FK
+        string status
+        datetime created_at
+    }
+    FEATURE_EVENTS {
+        string event_id PK
+        string user_id FK
+        string event_name
+        datetime event_timestamp
+        string session_id
+        string platform
+    }

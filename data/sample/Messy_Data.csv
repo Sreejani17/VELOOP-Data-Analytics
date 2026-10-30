@@ -1,0 +1,5 @@
+record_id,user_id,event_timestamp,status,amount
+M001,U0001,2026-03-01T10:00:00,success,100
+M002,,not-a-date,SUCCESS ,-25
+M003,U9999,2026-03-03T12:00:00,unknown,abc
+M003,U0002,2026-03-03T12:00:00,success,50
